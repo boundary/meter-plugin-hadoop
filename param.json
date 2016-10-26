@@ -1,0 +1,9 @@
+{
+  "items":[
+    {
+      "source" : "Hadoop Test"
+      "host":"localhost",      
+      "pollInterval":10000
+    }
+  ]
+}
