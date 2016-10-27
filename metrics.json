@@ -1,0 +1,12 @@
+{
+  "HADOOP_YARN_AVAILABLE_VCORES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Available vcores",
+    "displayName": "Available vcores",
+    "displayNameShort": "Available vcores",
+    "metric": "HADOOP_YARN_AVAILABLE_VCORES",
+    "type": "HADOOP",
+    "unit": "number"
+  }
+}
