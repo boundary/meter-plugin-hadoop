@@ -208,5 +208,95 @@
     "metric": "HADOOP_MAP_REDUCED_TOTAL_PHYSICAL_MEMORY_SIZE",
     "type": "HADOOP_CPU",
     "unit": "bytecount"
+  },
+  "HADOOP_YARN_APPLICATION_RUNNING": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of running apps",
+    "displayName": "The number of running apps",
+    "displayNameShort": "The number of running apps",
+    "metric": "HADOOP_YARN_APPLICATION_RUNNING",
+    "type": "HADOOP_YARN",
+    "unit": "number"
+  },
+  "HADOOP_YARN_APPLICATION_FAILED": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of failed apps",
+    "displayName": "The number of failed apps",
+    "displayNameShort": "The number of failed apps",
+    "metric": "HADOOP_YARN_APPLICATION_FAILED",
+    "type": "HADOOP_YARN",
+    "unit": "number"
+  },
+  "HADOOP_YARN_APPLICATION_KILLED": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of killed apps",
+    "displayName": "The number of killed apps",
+    "displayNameShort": "The number of killed apps",
+    "metric": "HADOOP_YARN_APPLICATION_KILLED",
+    "type": "HADOOP_YARN",
+    "unit": "number"
+  },
+  "HADOOP_YARN_APPLICATION_PENDING": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of pending apps",
+    "displayName": "The number of pending apps",
+    "displayNameShort": "The number of pending apps",
+    "metric": "HADOOP_YARN_APPLICATION_PENDING",
+    "type": "HADOOP_YARN",
+    "unit": "number"
+  },
+  "HADOOP_YARN_AVAILABLE_MEMORY": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The amount of available memory",
+    "displayName": "The amount of available memory",
+    "displayNameShort": "Available memory",
+    "metric": "HADOOP_YARN_AVAILABLE_MEMORY",
+    "type": "HADOOP_YARN",
+    "unit": "bytecount"
+  },
+  "HADOOP_YARN_AVAILABLE_VCORES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of available virtual cores",
+    "displayName": "Available virtual cores",
+    "displayNameShort": "Physical memory size",
+    "metric": "HADOOP_YARN_AVAILABLE_VCORES",
+    "type": "HADOOP_YARN",
+    "unit": "number"
+  },
+  "HADOOP_YARN_NUMMBER_OF_UNHEALTHY_NODES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of unhealthy nodes",
+    "displayName": "The number of unhealthy nodes",
+    "displayNameShort": "Unhealthy nodes",
+    "metric": "HADOOP_YARN_NUMMBER_OF_UNHEALTHY_NODES",
+    "type": "HADOOP_YARN",
+    "unit": "number"
+  },
+  "HADOOP_YARN_NUMMBER_OF_ACTIVE_NODES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of active nodes",
+    "displayName": "The number of active nodes",
+    "displayNameShort": "Total active nodes",
+    "metric": "HADOOP_YARN_NUMMBER_OF_ACTIVE_NODES",
+    "type": "HADOOP_YARN",
+    "unit": "number"
+  },
+  "HADOOP_YARN_NUMMBER_OF_LOST_NODES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "The number of lost nodes",
+    "displayName": "The number of lost nodes",
+    "displayNameShort": "Total lost nodes",
+    "metric": "HADOOP_YARN_NUMMBER_OF_LOST_NODES",
+    "type": "HADOOP_YARN",
+    "unit": "number"
   }
 }
