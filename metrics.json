@@ -1,12 +1,132 @@
 {
-  "HADOOP_YARN_AVAILABLE_VCORES": {
+  "HADOOP_NAMENODE_FS_CAPACITY_REMAINING": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Remaining disk space left in bytes",
+    "displayName": "Remaining disk space left in bytes",
+    "displayNameShort": "Remaining capacity",
+    "metric": "HADOOP_NAMENODE_FS_CAPACITY_REMAINING",
+    "type": "HADOOP_NAMENODE",
+    "unit": "bytecount"
+  },
+  "HADOOP_NAMENODE_FS_CORRUPTED_BLOCKS": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of corrupt blocks",
+    "displayName": "Number of corrupt blocks",
+    "displayNameShort": "Corrupt blocks",
+    "metric": "HADOOP_NAMENODE_FS_CORRUPTED_BLOCKS",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FS_MISSINGED_BLOCKS": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of missing blocks",
+    "displayName": "Number of missing blocks",
+    "displayNameShort": "Missing blocks",
+    "metric": "HADOOP_NAMENODE_FS_MISSINGED_BLOCKS",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FS_BLOCKSED_TOTAL": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total number of blocks",
+    "displayName": "Total number of blocks",
+    "displayNameShort": "Number of blocks",
+    "metric": "HADOOP_NAMENODE_FS_BLOCKSED_TOTAL",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FS_FILES_TOTAL": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total number of files",
+    "displayName": "Total number of files",
+    "displayNameShort": "Total files",
+    "metric": "HADOOP_NAMENODE_FS_FILES_TOTAL",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FS_BLOCKED_CAPACITY": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total Blocked Capacity",
+    "displayName": "Total Blocked Capacity",
+    "displayNameShort": "Blocked capacity",
+    "metric": "HADOOP_NAMENODE_FS_BLOCKED_CAPACITY",
+    "type": "HADOOP_NAMENODE",
+    "unit": "bytecount"
+  },
+  "HADOOP_NAMENODE_FS_UNDER_REPLICATED_BLOCKS": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of under replicated blocks",
+    "displayName": "Number of under replicated blocks",
+    "displayNameShort": "Under replicated blks",
+    "metric": "HADOOP_NAMENODE_FS_UNDER_REPLICATED_BLOCKS",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FS_CAPACITYED_USED": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Disk usage in bytes",
+    "displayName": "Disk usage in bytes",
+    "displayNameShort": "Capacity used",
+    "metric": "HADOOP_NAMENODE_FS_CAPACITYED_USED",
+    "type": "HADOOP_NAMENODE",
+    "unit": "bytecount"
+  },
+  "HADOOP_NAMENODE_FS_TOTAL_LOAD": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total load on the file system",
+    "displayName": "Total load on the file system",
+    "displayNameShort": "Load file system",
+    "metric": "HADOOP_NAMENODE_FS_TOTAL_LOAD",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FSSTATE_VOLUME_FAILURES_TOTAL": {
     "defaultAggregate": "sum",
     "defaultResolutionMS": 1000,
     "description": "Available vcores",
     "displayName": "Available vcores",
     "displayNameShort": "Available vcores",
-    "metric": "HADOOP_YARN_AVAILABLE_VCORES",
-    "type": "HADOOP",
+    "metric": "HADOOP_NAMENODE_FSSTATE_VOLUME_FAILURES_TOTAL",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FSSTATE_NUMBER_OF_LIVE_DATA_NODES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total number of live data nodes",
+    "displayName": "Total number of live data nodes",
+    "displayNameShort": "Number of live node",
+    "metric": "HADOOP_NAMENODE_FSSTATE_NUMBER_OF_LIVE_DATA_NODES",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FSSTATE_NUMBER_OF_DEAD_DATA_NODES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total number of dead data nodes",
+    "displayName": "Total number of dead data nodes",
+    "displayNameShort": "Number of dead nodes",
+    "metric": "HADOOP_NAMENODE_FSSTATE_NUMBER_OF_DEAD_DATA_NODES",
+    "type": "HADOOP_NAMENODE",
+    "unit": "number"
+  },
+  "HADOOP_NAMENODE_FSSTATE_NUMBER_OF_STALE_DATA_NODES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of stale data nodes",
+    "displayName": "Number of stale data nodes",
+    "displayNameShort": "Stale data nodes",
+    "metric": "HADOOP_NAMENODE_FSSTATE_NUMBER_OF_STALE_DATA_NODES",
+    "type": "HADOOP_NAMENODE",
     "unit": "number"
   }
 }
