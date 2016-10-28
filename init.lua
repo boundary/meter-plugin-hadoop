@@ -44,8 +44,7 @@ local FEATCH_CPU_MAPREDUCED='java.lang:type=OperatingSystem'
 local FEATCH_YARN_QUEUED_MATRICS='Hadoop:service=ResourceManager,name=QueueMetrics,q0=root'
 local FEATCH_YARN_CLUSTER_METRICS ='Hadoop:service=ResourceManager,name=ClusterMetrics'
 local FEATCH_YARN_LIVE_NODE_RM='Hadoop:service=ResourceManager,name=RMNMInfo'
-
-
+local MB_TO_BYTES = 1048576
 --Split string by comma
 function string:split( inSplitPattern, outResults )
   if not outResults then
@@ -199,7 +198,7 @@ local function yarnMapReducedDetailsExtractor (data, item)
        metric('HADOOP_YARN_APPLICATION_FAILED', item.AppsFailed, nil, source)
        metric('HADOOP_YARN_APPLICATION_KILLED', item.AppsKilled, nil, source)
        metric('HADOOP_YARN_APPLICATION_PENDING', item.AppsPending, nil, source)
-       metric('HADOOP_YARN_AVAILABLE_MEMORY', item.AvailableMB, nil, source)
+       metric('HADOOP_YARN_AVAILABLE_MEMORY', item.AvailableMB*MB_TO_BYTES, nil, source)
        metric('HADOOP_YARN_AVAILABLE_VCORES', item.AvailableVCores, nil, source)
     end
     if FEATCH_YARN_CLUSTER_METRICS == item.name then
