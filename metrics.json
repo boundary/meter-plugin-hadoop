@@ -92,9 +92,9 @@
   "HADOOP_NAMENODE_FSSTATE_VOLUME_FAILURES_TOTAL": {
     "defaultAggregate": "sum",
     "defaultResolutionMS": 1000,
-    "description": "Available vcores",
-    "displayName": "Available vcores",
-    "displayNameShort": "Available vcores",
+    "description": "Total volume failures",
+    "displayName": "Total volume failures",
+    "displayNameShort": "Volume failures",
     "metric": "HADOOP_NAMENODE_FSSTATE_VOLUME_FAILURES_TOTAL",
     "type": "HADOOP_NAMENODE",
     "unit": "number"
