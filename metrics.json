@@ -128,5 +128,85 @@
     "metric": "HADOOP_NAMENODE_FSSTATE_NUMBER_OF_STALE_DATA_NODES",
     "type": "HADOOP_NAMENODE",
     "unit": "number"
+  },
+  "HADOOP_MAP_REDUCED_PROCESS_CPU_TIME": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Prcesss cpu time",
+    "displayName": "Prcesss cpu time",
+    "displayNameShort": "Prcesss cpu time",
+    "metric": "HADOOP_MAP_REDUCED_PROCESS_CPU_TIME",
+    "type": "HADOOP_CPU",
+    "unit": "duration"
+  },
+  "HADOOP_MAP_REDUCED_PROCESS_CPU_LOAD": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Prcesss cpu load",
+    "displayName": "Prcesss cpu load",
+    "displayNameShort": "Prcesss cpu load",
+    "metric": "HADOOP_MAP_REDUCED_PROCESS_CPU_LOAD",
+    "type": "HADOOP_CPU",
+    "unit": "percent"
+  },
+  "HADOOP_MAP_REDUCED_SYSTEM_CPU_LOAD": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "System cpu load",
+    "displayName": "System cpu load",
+    "displayNameShort": "System cpu load",
+    "metric": "HADOOP_MAP_REDUCED_SYSTEM_CPU_LOAD",
+    "type": "HADOOP_CPU",
+    "unit": "percent"
+  },
+  "HADOOP_MAP_REDUCED_AVAILABLE_PROCESSORS": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of processors available",
+    "displayName": "Number of processors available",
+    "displayNameShort": "Processors available",
+    "metric": "HADOOP_MAP_REDUCED_AVAILABLE_PROCESSORS",
+    "type": "HADOOP_CPU",
+    "unit": "number"
+  },
+  "HADOOP_MAP_REDUCED_TOTAL_SWAP_SPACE_SIZE": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total swap space size",
+    "displayName": "Total swap space size",
+    "displayNameShort": "Total swap space size",
+    "metric": "HADOOP_MAP_REDUCED_TOTAL_SWAP_SPACE_SIZE",
+    "type": "HADOOP_CPU",
+    "unit": "bytecount"
+  },
+  "HADOOP_MAP_REDUCED_FREE_SWAP_SPACE_SIZE": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total swap space free",
+    "displayName": "Total swap space free",
+    "displayNameShort": "Swap space free",
+    "metric": "HADOOP_MAP_REDUCED_FREE_SWAP_SPACE_SIZE",
+    "type": "HADOOP_CPU",
+    "unit": "bytecount"
+  },
+  "HADOOP_MAP_REDUCED_FREE_PHYSICAL_MEMORY_SIZE": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Physical memory free size",
+    "displayName": "Physical memory free size",
+    "displayNameShort": "Free memory size",
+    "metric": "HADOOP_MAP_REDUCED_FREE_PHYSICAL_MEMORY_SIZE",
+    "type": "HADOOP_CPU",
+    "unit": "bytecount"
+  },
+  "HADOOP_MAP_REDUCED_TOTAL_PHYSICAL_MEMORY_SIZE": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total Physical memory size",
+    "displayName": "Total Physical memory size",
+    "displayNameShort": "Physical memory size",
+    "metric": "HADOOP_MAP_REDUCED_TOTAL_PHYSICAL_MEMORY_SIZE",
+    "type": "HADOOP_CPU",
+    "unit": "bytecount"
   }
 }
