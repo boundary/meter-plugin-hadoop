@@ -264,7 +264,7 @@
     "defaultResolutionMS": 1000,
     "description": "The number of available virtual cores",
     "displayName": "Available virtual cores",
-    "displayNameShort": "Physical memory size",
+    "displayNameShort": "Available virtual cores",
     "metric": "HADOOP_YARN_AVAILABLE_VCORES",
     "type": "HADOOP_YARN",
     "unit": "number"
@@ -298,5 +298,125 @@
     "metric": "HADOOP_YARN_NUMMBER_OF_LOST_NODES",
     "type": "HADOOP_YARN",
     "unit": "number"
+  },
+  "HADOOP_DATANODE_HEAP_MEMORY_USED": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Heap memory used",
+    "displayName": "Heap memory used",
+    "displayNameShort": "Heap memory used",
+    "metric": "HADOOP_DATANODE_HEAP_MEMORY_USED",
+    "type": "HADOOP_DATANODE",
+    "unit": "bytecount"
+  },
+  "HADOOP_DATANODE_HEAP_MEMORY_MAX": {
+    "defaultAggregate": "max",
+    "defaultResolutionMS": 1000,
+    "description": "Heap memory max used",
+    "displayName": "Heap memory max used",
+    "displayNameShort": "Heap memory max used",
+    "metric": "HADOOP_DATANODE_HEAP_MEMORY_MAX",
+    "type": "HADOOP_DATANODE",
+    "unit": "bytecount"
+  },
+  "HADOOP_DATANODE_GC_COUNT": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "GC count",
+    "displayName": "GC count",
+    "displayNameShort": "GC count",
+    "metric": "HADOOP_DATANODE_GC_COUNT",
+    "type": "HADOOP_DATANODE",
+    "unit": "number"
+  },
+  "HADOOP_DATANODE_GC_TIME_MILLIS": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "GC time milliseconds",
+    "displayName": "GC time milliseconds",
+    "displayNameShort": "GC time milliseconds",
+    "metric": "HADOOP_DATANODE_GC_TIME_MILLIS",
+    "type": "HADOOP_DATANODE",
+    "unit": "duration"
+  },
+  "HADOOP_DATANODE_GC_NUMBER_OF_WARN_THREADSHOLD_EXCEEDED": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "GC of warn threadshold exceeded",
+    "displayName": "GC of warn threadshold exceeded",
+    "displayNameShort": "GC of warn threadshold exceeded",
+    "metric": "HADOOP_DATANODE_GC_NUMBER_OF_WARN_THREADSHOLD_EXCEEDED",
+    "type": "HADOOP_DATANODE",
+    "unit": "number"
+  },
+  "HADOOP_DATANODE_GC_NUMBER_OF_INFO_THREADSHOLD_EXCEEDED": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "GC of info threadshold exceeded",
+    "displayName": "GC of info threadshold exceeded",
+    "displayNameShort": "GC of info threadshold exceeded",
+    "metric": "HADOOP_DATANODE_GC_NUMBER_OF_INFO_THREADSHOLD_EXCEEDED",
+    "type": "HADOOP_DATANODE",
+    "unit": "number"
+  },
+  "HADOOP_DATANODE_GC_TOTAL_EXTRA_SLEEP_TIME": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "GC extra sleep time",
+    "displayName": "GC extra sleep time",
+    "displayNameShort": "GC extra sleep time",
+    "metric": "HADOOP_DATANODE_GC_TOTAL_EXTRA_SLEEP_TIME",
+    "type": "HADOOP_DATANODE",
+    "unit": "duration"
+  },
+  "HADOOP_DATANODE_BLOCKS_READ": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Blocks read",
+    "displayName": "Blocks read",
+    "displayNameShort": "Blocks read",
+    "metric": "HADOOP_DATANODE_BLOCKS_READ",
+    "type": "HADOOP_DATANODE",
+    "unit": "number"
+  },
+  "HADOOP_DATANODE_BLOCKS_WRITTEN": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Blocks written",
+    "displayName": "Blocks written",
+    "displayNameShort": "Blocks written",
+    "metric": "HADOOP_DATANODE_BLOCKS_WRITTEN",
+    "type": "HADOOP_DATANODE",
+    "unit": "number"
+  },
+  "HADOOP_DATANODE_VOLUME_FAILURES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of failed  volumes",
+    "displayName": "Number of failed  volumes",
+    "displayNameShort": "Number of failed  volumes",
+    "metric": "HADOOP_DATANODE_VOLUME_FAILURES",
+    "type": "HADOOP_DATANODE",
+    "unit": "number"
+  },
+  "HADOOP_DATANODE_NUMBER_OF_FAILED_STORAGE_VOLUMES": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of failed storage volumes",
+    "displayName": "Number of failed storage volumes",
+    "displayNameShort": "Number of failed storage volumes",
+    "metric": "HADOOP_DATANODE_NUMBER_OF_FAILED_STORAGE_VOLUMES",
+    "type": "HADOOP_DATANODE",
+    "unit": "number"
+  },
+  "HADOOP_DATANODE_REMAINING_CAPACITY": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Remaining disk space",
+    "displayName": "Remaining disk space",
+    "displayNameShort": "Remaining disk space",
+    "metric": "HADOOP_DATANODE_REMAINING_CAPACITY",
+    "type": "HADOOP_DATANODE",
+    "unit": "bytecount"
   }
 }
