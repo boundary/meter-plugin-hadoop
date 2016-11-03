@@ -25,11 +25,7 @@ This plugin grabs metrics from the Hadoop node where it is started and parses th
 
 ### Plugin Setup
 
-#### For CentOS 7.x & RHEL 7.x and Ubuntu v14.04(trusty)
-To get ceilometer configuration such as host, port and more, goto below file.
-```
-Default path for ceilometer configuration file is "/etc/ceilometer/ceilometer.conf"
-```
+none
 
      
 ### Plugin Configuration Fields
