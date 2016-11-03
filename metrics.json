@@ -298,6 +298,28 @@
     "metric": "HADOOP_YARN_NUMMBER_OF_LOST_NODES",
     "type": "HADOOP_YARN",
     "unit": "number"
+  }
+  ,
+  "HADOOP_YARN_USED_MEMORY": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Total used memory",
+    "displayName": "Total used memory",
+    "displayNameShort": "Total used memory",
+    "metric": "HADOOP_YARN_USED_MEMORY",
+    "type": "HADOOP_YARN",
+    "unit": "bytecount"
+  }
+  ,
+  "HADOOP_YARN_NUMBER_OF_CONTAINERS": {
+    "defaultAggregate": "sum",
+    "defaultResolutionMS": 1000,
+    "description": "Number of containers",
+    "displayName": "Number of containers",
+    "displayNameShort": "Number of containers",
+    "metric": "HADOOP_YARN_NUMBER_OF_CONTAINERS",
+    "type": "HADOOP_YARN",
+    "unit": "number"
   },
   "HADOOP_DATANODE_HEAP_MEMORY_USED": {
     "defaultAggregate": "sum",

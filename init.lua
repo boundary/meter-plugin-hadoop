@@ -209,6 +209,12 @@ local function yarnMapReducedDetailsExtractor (data, item)
     end
     if FEATCH_YARN_LIVE_NODE_RM == item.name then
      --metric('HADOOP_YARN_USED_MEMORY', item.NumLostNMs, nil, source)
+     local liveNodeMgr = item.LiveNodeManagers
+     local success, parsed = parseJson(liveNodeMgr)
+      for _, items in pairs(parsed) do
+        metric('HADOOP_YARN_USED_MEMORY', items.UsedMemoryMB * MB_TO_BYTES, nil, source)
+        metric('HADOOP_YARN_NUMBER_OF_CONTAINERS', items.NumContainers, nil, source)
+      end
     end
   end
   return result
