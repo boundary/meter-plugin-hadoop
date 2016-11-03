@@ -34,7 +34,7 @@ none
 |Field Name      |Description                                                             |
 |:---------------|:-----------------------------------------------------------------------|
 |Host            |The hadoop hostname                  |
-|PollInterval    |How often (in milliseconds) to poll for metrics.                                       |
+|PollInterval    |How often (in milliseconds) to poll for metrics.Default value for this is 1000 ms, we recommend not have smaller value                                       |
 
 ### Metrics Collected
 
