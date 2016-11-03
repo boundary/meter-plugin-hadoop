@@ -15,7 +15,7 @@ This plugin grabs metrics from the Hadoop node where it is started and parses th
 #### For Centos/RHEL/Ubuntu
 
 - To install Hadoop on centos v7.x/rhel v7.x [see instructions](https://www.rdoproject.org/install/quickstart/)
-- To install Hadoop on ubuntu v14.04(trusty) [see instructions](http://thepowerofdata.io/setting-up-a-apache-hadoop-2-7-single-node-on-ubuntu-14-04/)
+- To install Hadoop on ubuntu v14.04 [see instructions](http://thepowerofdata.io/setting-up-a-apache-hadoop-2-7-single-node-on-ubuntu-14-04/)
 
 #### TrueSight Pulse Meter versions v4.5 or later
 
