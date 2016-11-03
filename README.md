@@ -71,7 +71,10 @@ none
 |HADOOP_YARN_NUMMBER_OF_UNHEALTHY_NODES                |The number of unhealthy nodes                                              |
 |HADOOP_YARN_NUMMBER_OF_ACTIVE_NODES                   |The number of active nodes                                                 |
 |HADOOP_YARN_NUMMBER_OF_LOST_NODES                     |The number of lost nodes                                                   |
-|HADOOP_YARN_USED_MEMORY                               |Total used memory                                                          | |HADOOP_YARN_NUMBER_OF_CONTAINERS                      |Number of containers                                                       |      |HADOOP_DATANODE_HEAP_MEMORY_USED                      |Heap memory used                                                           | |HADOOP_DATANODE_HEAP_MEMORY_MAX                       |Heap memory max used                                                       |
+|HADOOP_YARN_USED_MEMORY                               |Total used memory                                                          | 
+|HADOOP_YARN_NUMBER_OF_CONTAINERS                      |Number of containers                                                       |   
+|HADOOP_DATANODE_HEAP_MEMORY_USED                      |Heap memory used                                                           | 
+|HADOOP_DATANODE_HEAP_MEMORY_MAX                       |Heap memory max used                                                       |
 |HADOOP_DATANODE_GC_COUNT                              |GC count                                                                   |
 |HADOOP_DATANODE_GC_TIME_MILLIS                        |GC time milliseconds                                                       |    
 |HADOOP_DATANODE_GC_NUMBER_OF_WARN_THREADSHOLD_EXCEEDED|GC of warn threadshold exceeded                                            |
