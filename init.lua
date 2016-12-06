@@ -45,7 +45,13 @@ local FEATCH_YARN_QUEUED_MATRICS='Hadoop:service=ResourceManager,name=QueueMetri
 local FEATCH_YARN_CLUSTER_METRICS ='Hadoop:service=ResourceManager,name=ClusterMetrics'
 local FEATCH_YARN_LIVE_NODE_RM='Hadoop:service=ResourceManager,name=RMNMInfo'
 local MB_TO_BYTES = 1048576
-
+local HADOOP_SINGLE_NODE='Single Node'
+local HADOOP_MULTINODE='Multi Node'
+local HADOOP_NAMENODE='nameNode'
+local HADOOP_DATANODE='dataNode'
+local HADOOP_YARN_MR="yarnMR"
+local HADOOP_CLUSTER_DETAILS='Hadoop:service=NameNode,name=NameNodeInfo'
+local HADOOP_DATANODE_CLUSTER_DETAILS='Hadoop:service=DataNode,name=DataNodeInfo'
 --Split string by comma
 function string:split( inSplitPattern, outResults )
   if not outResults then
@@ -63,69 +69,277 @@ function string:split( inSplitPattern, outResults )
 end
 
 local function createOptions(item,port)
-
   local options = {}
   options.host = item.host
   options.port = port
   options.wait_for_end = true
-
   return options
 end
-
-local function createNameNodeDataSource(item,port)
-
+local function createClusterNameNodeSource(item,port)
   local options = createOptions(item,port)
-
   options.path = HADOOP_JMX_PATH
-  options.meta = {NAMENODE_KEY, item}
-
+  local key = item.host .. '.' .. port
+  options.meta = {NAMENODE_KEY, key}
+  return WebRequestDataSource:new(options)
+end
+local function createNameNodeDataSource(item,port)
+  local options = createOptions(item,port)
+  options.path = HADOOP_JMX_PATH
+  local key = item.host .. '.' .. port
+  options.meta = {NAMENODE_KEY, key}
   return WebRequestDataSource:new(options)
 end
 
 local function createDataNodeDataSource(item,port)
-
   local options = createOptions(item,port)
-
   options.path = HADOOP_JMX_PATH
-  options.meta = {DATANODE_KEY, item}
-
+  local key = item.host .. '.' .. port
+  options.meta = {DATANODE_KEY, key}
   return WebRequestDataSource:new(options)
 end
 
 local function createYarnAndMapReducedDataSource(item,port)
   local options = createOptions(item,port)
-
   options.path = HADOOP_JMX_PATH
-  options.meta = {YARNMAP_KEY, item}
-
+  local key = item.host .. '.' .. port
+  options.meta = {YARNMAP_KEY, key}
   return WebRequestDataSource:new(options)
 end
+local function getListOfClusterDetails(options,type)
+ local ds = WebRequestDataSource:new(options)
+  ds:chain(function (context, callback, data, extra)
+     if not isHttpSuccess(extra.status_code) then
+      return nil
+    end
+    local success, parsed = parseJson(data)
+    if not success then
+      return nil
+    end
+   
+    callback(data, extra)
+    local datasources = {}
+    local yarnAndMapReducedNode = data[BEANS_CONSTANT]
+  if FEATCH_YARN_LIVE_NODE_RM == item.name then     
+     local liveNodeMgr = item.LiveNodeManagers
+     local success, parsed = parseJson(liveNodeMgr)
+      for _, items in pairs(parsed) do
+        print(items.HostName)
+        table.insert(datasources, items.HostName)
+      end
+    end
+    return datasources
+  end)
+  return ds
+end
+local function createOption(host,port)
+  local options = {}
+  options.host = host
+  options.port = port
+  options.wait_for_end = true
+  return options
+end
+local function createClusterDataNodeSource(host,port)
+  local options = createOption(host,port)
+  options.path = HADOOP_JMX_PATH
+  local key = host .. '.' .. port
+  options.meta = {DATANODE_KEY, key}
+  return WebRequestDataSource:new(options)
+end
+local function createClusterYarnDataSource(host,port)
+  local options = createOption(host,port)
+  options.path = HADOOP_JMX_PATH
+  local key = host .. '.' .. port
+  options.meta = {YARNMAP_KEY, key}
+  return WebRequestDataSource:new(options)
+end
+local function createClusterNameNodeDataSource(item,port)
+  local options = createOptions(item,port)
+  options.path = HADOOP_JMX_PATH
+  local key = item.host .. '.' .. port
+  options.meta = {NAMENODE_KEY, key}
+  local ds = WebRequestDataSource:new(options)
+  ds:chain(function (context, callback, data, extra)
+     if not isHttpSuccess(extra.status_code) then
+      return nil
+    end
 
+    local success, parsed = parseJson(data)
+    if not success then
+      return nil
+    end
+
+    callback(data, extra)
+
+    local datasources = {}
+    local val = parsed[BEANS_CONSTANT]
+    for _, items in pairs(val) do
+     if HADOOP_CLUSTER_DETAILS == items.name then
+     local success, parsed = parseJson(items.LiveNodes)
+     for _, items in pairs(parsed) do
+        local clusterHostAndPort = (items.infoAddr):split(":")
+        local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2])
+        ds_detail:propagate('error', context)
+        table.insert(datasources, ds_detail)
+     end
+     end
+    end    
+    return datasources
+  end)
+  return ds
+end
+local function createClustersDataNodeSource(item,port)
+  local options = createOptions(item,port)
+  options.path = HADOOP_JMX_PATH
+  local key = item.host .. '.' .. port
+  options.meta = {DATANODE_KEY, key}
+  local ds = WebRequestDataSource:new(options)
+  ds:chain(function (context, callback, data, extra)
+     if not isHttpSuccess(extra.status_code) then
+      return nil
+    end
+
+    local success, parsed = parseJson(data)
+    if not success then
+      return nil
+    end
+
+    callback(data, extra)
+
+    local datasources = {}
+    local val = parsed[BEANS_CONSTANT]
+    for _, items in pairs(val) do
+     if HADOOP_DATANODE_CLUSTER_DETAILS == items.name then
+     local success, parsed = parseJson(items.LiveNodes)
+     for _, items in pairs(parsed) do
+        local clusterHostAndPort = (items.infoAddr):split(":")
+        local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2])
+        ds_detail:propagate('error', context)
+        table.insert(datasources, ds_detail)
+     end
+     end
+    end    
+    return datasources
+  end)
+  return ds
+end
+local function createClusterYarnDataSource(item,port)
+  local options = createOptions(item,port)
+  options.path = HADOOP_JMX_PATH
+  local key = item.host .. '.' .. port
+  options.meta = {YARNMAP_KEY, key}
+  local ds = WebRequestDataSource:new(options)
+  ds:chain(function (context, callback, data, extra)
+     if not isHttpSuccess(extra.status_code) then
+      return nil
+    end
+
+    local success, parsed = parseJson(data)
+    if not success then
+      return nil
+    end
+
+    callback(data, extra)
+
+    local datasources = {}
+    local val = parsed[BEANS_CONSTANT]
+    for _, items in pairs(val) do
+     if FEATCH_YARN_LIVE_NODE_RM == items.name then
+     local success, parsed = parseJson(items.LiveNodeManagers)
+     counter = 1
+     for _, items in pairs(parsed) do
+        if counter ~=1 then 
+        local clusterHostAndPort = (items.NodeHTTPAddress):split(":")
+        local ds_detail = createClusterYarnDataSource(clusterHostAndPort[1], clusterHostAndPort[2])
+        ds_detail:propagate('error', context)
+        table.insert(datasources, ds_detail)
+        end
+     end
+     end
+    end    
+    return datasources
+  end)
+  return ds
+end
 local function createPollers(params)
   local pollers = PollerCollection:new()
-
   for _, item in pairs(params.items) do
-    local dataNode = createDataNodeDataSource(item,DATANODE_PORT)
-    local dataNodePoller = DataSourcePoller:new(item.pollInterval, dataNode)
-    pollers:add(dataNodePoller)
-
-    local nameNode = createNameNodeDataSource(item,NAMENODE_PORT)
-    local nameNodePoller = DataSourcePoller:new(item.pollInterval, nameNode)
-    pollers:add(nameNodePoller)
-
-    local yarnAndMapReduced = createYarnAndMapReducedDataSource(item,YARN_RM_PORT)
-    local yarnAndMapReducedPoller = DataSourcePoller:new(item.pollInterval, yarnAndMapReduced)
-    pollers:add(yarnAndMapReducedPoller)
+    if item.type == HADOOP_SINGLE_NODE then
+      if  item.dnPort ~='' then  
+       local dataNode = createDataNodeDataSource(item,item.dnPort)
+       local dataNodePoller = DataSourcePoller:new(item.pollInterval, dataNode)
+       pollers:add(dataNodePoller)
+      end
+     if item.nnPort ~='' then
+       local nameNode = createNameNodeDataSource(item,item.nnPort)
+       local nameNodePoller = DataSourcePoller:new(item.pollInterval, nameNode)
+       pollers:add(nameNodePoller)
+     end
+     if item.rmPort ~='' then
+      local yarnAndMapReduced = createYarnAndMapReducedDataSource(item,item.rmPort)
+      local yarnAndMapReducedPoller = DataSourcePoller:new(item.pollInterval, yarnAndMapReduced)
+      pollers:add(yarnAndMapReducedPoller)
+      end
+    elseif item.type == HADOOP_MULTINODE then
+      if  item.dnPort ~='' then
+         local ds = createDataNodeDataSource(item,item.nnPort)
+          ds:chain(function (context, callback, data, extra)
+             if not isHttpSuccess(extra.status_code) then
+              return nil
+             end
+       local success, parsed = parseJson(data)
+          if not success then
+                 return nil
+          end
+     callback(data, extra)
+         return { createClustersDataNodeSource(item,item.dnPort) }
+      end)
+    local poller = DataSourcePoller:new(item.pollInterval, ds)
+    pollers:add(poller)
+      end
+      if  item.nnPort ~='' then
+        local ds = createClusterNameNodeSource(item,item.nnPort)
+          ds:chain(function (context, callback, data, extra)
+             if not isHttpSuccess(extra.status_code) then
+        	    return nil
+             end
+     	 local success, parsed = parseJson(data)
+      		if not success then
+                 return nil
+      		end
+	   callback(data, extra)
+         return { createClusterNameNodeDataSource(item,item.nnPort) }
+      end)
+    local poller = DataSourcePoller:new(item.pollInterval, ds)
+    pollers:add(poller)
+      end 
+      if  item.rmPort ~='' then
+       local ds = createYarnAndMapReducedDataSource(item,item.rmPort)
+          ds:chain(function (context, callback, data, extra)
+             if not isHttpSuccess(extra.status_code) then
+              return nil
+             end
+       local success, parsed = parseJson(data)
+          if not success then
+                 return nil
+          end
+     callback(data, extra)
+         return { createClusterYarnDataSource(item,item.rmPort) }
+      end)
+    local poller = DataSourcePoller:new(item.pollInterval, ds)
+    pollers:add(poller)
+      end                                                                  
+      print("Multinode")
+    end    
   end
 
   return pollers
 end
 
-local function nameNodeDetailsExtractor (data, item)
+local function nameNodeDetailsExtractor (data, hostName)
   local result = {}
   local metric = function (...) ipack(result, ...) end
   local nameNode = data[BEANS_CONSTANT]
-  local source = item.host
+  local source = hostName
   for _, item in pairs(nameNode) do
      if FEATCH_NAMENODE_FSSYSTEM == item.name then
       metric('HADOOP_NAMENODE_FS_CAPACITY_REMAINING', item.CapacityRemaining, nil, source)
@@ -149,11 +363,11 @@ local function nameNodeDetailsExtractor (data, item)
   return result
 end
 
-local function dataNodeDetailsExtractor (data, item)
+local function dataNodeDetailsExtractor (data, hostName)
   local result = {}
   local metric = function (...) ipack(result, ...) end
   local dataNode = data[BEANS_CONSTANT]
-  local source = item.host
+  local source = hostName
   for _, item in pairs(dataNode) do
      if FEATCH_DATANODE_JVMMETRICS == item.name then
       metric('HADOOP_DATANODE_HEAP_MEMORY_USED', item.MemHeapUsedM * MB_TO_BYTES, nil, source)
@@ -178,11 +392,11 @@ local function dataNodeDetailsExtractor (data, item)
   return result
 end
 
-local function yarnMapReducedDetailsExtractor (data, item)
+local function yarnMapReducedDetailsExtractor (data, hostName)
   local result = {}
   local metric = function (...) ipack(result, ...) end
   local yarnAndMapReducedNode = data[BEANS_CONSTANT]
-  local source = item.host
+  local source = hostName
   for _, item in pairs(yarnAndMapReducedNode) do
     if FEATCH_CPU_MAPREDUCED == item.name then
       metric('HADOOP_MAP_REDUCED_PROCESS_CPU_TIME', item.ProcessCpuTime, nil, source)
@@ -243,10 +457,9 @@ function plugin:onParseValues(data, extra)
     self:emitEvent('error', 'Cannot parse metrics. Please verify configuration.')
     return
   end
-
-  local key, item = unpack(extra.info)
+  local key, hostName = unpack(extra.info)
   local extractor = extractors_map[key]
-  return extractor(parsed, item)
+  return extractor(parsed, hostName)
 
 end
 

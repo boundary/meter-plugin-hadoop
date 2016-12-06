@@ -1,9 +1,21 @@
 {
-  "items":[
+  "items": [
     {
-      "host":"localhost",      
-      "pollInterval":1000
+      "host": "172.22.237.220",
+      "type": "Multi Node",
+      "rmPort": 8088,
+      "dnPort": 50075,
+      "nnPort": 50070,
+      "pollInterval": 1000
+    },
+    {
+      "host": "10.129.141.123",
+      "type": "Multi Node",
+      "rmPort": 8088,
+      "dnPort": 50070,
+      "nnPort": 50070,
+      "pollInterval": 1000
     }
   ],
-  "pollInterval":1000
+  "pollInterval": 1000
 }
