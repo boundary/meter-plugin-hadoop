@@ -142,9 +142,9 @@
   "HADOOP_MAP_REDUCED_PROCESS_CPU_LOAD": {
     "defaultAggregate": "sum",
     "defaultResolutionMS": 1000,
-    "description": "Prcesss cpu load",
-    "displayName": "Prcesss cpu load",
-    "displayNameShort": "Prcesss cpu load",
+    "description": "Prcess cpu load",
+    "displayName": "Prcess cpu load",
+    "displayNameShort": "Prcess cpu load",
     "metric": "HADOOP_MAP_REDUCED_PROCESS_CPU_LOAD",
     "type": "HADOOP_CPU",
     "unit": "percent"
