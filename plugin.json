@@ -139,7 +139,7 @@
       "required": true
     },
     {
-      "title": "User Name(Required for Kerberos authentication using HTTP SPNEGO)",
+      "title": "User Name",
       "name": "name",
       "description": "User name is used to access authenticated(Kerberos authentication using HTTP SPNEGO protocol)  HTTP web-consoles",
       "type": "string",
