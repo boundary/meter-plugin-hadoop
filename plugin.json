@@ -131,12 +131,20 @@
       "required": true
     },
     {
-      "title": "Polling Interval",
+      "title": "Polling Interval(ms)",
       "name": "pollInterval",
       "description": "The polling interval (in milliseconds) to call the hadopp performance metrics collector",
       "type": "integer",
       "default": 1000,
       "required": true
+    },
+    {
+      "title": "User Name",
+      "name": "name",
+      "description": "User name is used to access authenticated(Kerberos authentication using HTTP SPNEGO protocol)  HTTP web-consoles",
+      "type": "string",
+      "default": 1000,
+      "required": false
     }
   ]
 }

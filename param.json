@@ -6,15 +6,17 @@
       "rmPort": 8088,
       "dnPort": 50075,
       "nnPort": 50070,
-      "pollInterval": 1000
+      "pollInterval": 1000,
+      "name" :"Patil"
     },
     {
       "host": "10.129.141.123",
-      "type": "Multi Node",
+      "type": "Single Node",
       "rmPort": 8088,
       "dnPort": 50070,
       "nnPort": 50070,
-      "pollInterval": 1000
+      "pollInterval": 1000,
+      "name" :"Santosh"
     }
   ],
   "pollInterval": 1000

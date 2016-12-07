@@ -52,6 +52,7 @@ local HADOOP_DATANODE='dataNode'
 local HADOOP_YARN_MR="yarnMR"
 local HADOOP_CLUSTER_DETAILS='Hadoop:service=NameNode,name=NameNodeInfo'
 local HADOOP_DATANODE_CLUSTER_DETAILS='Hadoop:service=DataNode,name=DataNodeInfo'
+local HADOOP_USER_NAME_PARAM='?user.name='
 --Split string by comma
 function string:split( inSplitPattern, outResults )
   if not outResults then
@@ -77,14 +78,22 @@ local function createOptions(item,port)
 end
 local function createClusterNameNodeSource(item,port)
   local options = createOptions(item,port)
-  options.path = HADOOP_JMX_PATH
+  if  item.name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = item.host .. '.' .. port
   options.meta = {NAMENODE_KEY, key}
   return WebRequestDataSource:new(options)
 end
 local function createNameNodeDataSource(item,port)
   local options = createOptions(item,port)
-  options.path = HADOOP_JMX_PATH
+  if  item.name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = item.host .. '.' .. port
   options.meta = {NAMENODE_KEY, key}
   return WebRequestDataSource:new(options)
@@ -92,7 +101,11 @@ end
 
 local function createDataNodeDataSource(item,port)
   local options = createOptions(item,port)
-  options.path = HADOOP_JMX_PATH
+  if  item.name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = item.host .. '.' .. port
   options.meta = {DATANODE_KEY, key}
   return WebRequestDataSource:new(options)
@@ -100,7 +113,11 @@ end
 
 local function createYarnAndMapReducedDataSource(item,port)
   local options = createOptions(item,port)
-  options.path = HADOOP_JMX_PATH
+  if  item.name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = item.host .. '.' .. port
   options.meta = {YARNMAP_KEY, key}
   return WebRequestDataSource:new(options)
@@ -113,23 +130,35 @@ local function createOption(host,port)
   options.wait_for_end = true
   return options
 end
-local function createClusterDataNodeSource(host,port)
+local function createClusterDataNodeSource(host,port,name)
   local options = createOption(host,port)
-  options.path = HADOOP_JMX_PATH
+  if  name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = host .. '.' .. port
   options.meta = {DATANODE_KEY, key}
   return WebRequestDataSource:new(options)
 end
-local function createClusterYarnDataSource(host,port)
+local function createClusterYarnDataSource(host,port,name)
   local options = createOption(host,port)
-  options.path = HADOOP_JMX_PATH
+  if  name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = host .. '.' .. port
   options.meta = {YARNMAP_KEY, key}
   return WebRequestDataSource:new(options)
 end
 local function createClusterNameNodeDataSource(item,port)
   local options = createOptions(item,port)
-  options.path = HADOOP_JMX_PATH
+  if  item.name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = item.host .. '.' .. port
   options.meta = {NAMENODE_KEY, key}
   local ds = WebRequestDataSource:new(options)
@@ -152,7 +181,7 @@ local function createClusterNameNodeDataSource(item,port)
      local success, parsed = parseJson(items.LiveNodes)
      for _, items in pairs(parsed) do
         local clusterHostAndPort = (items.infoAddr):split(":")
-        local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2])
+        local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2],item.name)
         ds_detail:propagate('error', context)
         table.insert(datasources, ds_detail)
      end
@@ -164,7 +193,11 @@ local function createClusterNameNodeDataSource(item,port)
 end
 local function createClustersDataNodeSource(item,port)
   local options = createOptions(item,port)
-  options.path = HADOOP_JMX_PATH
+  if  item.name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = item.host .. '.' .. port
   options.meta = {DATANODE_KEY, key}
   local ds = WebRequestDataSource:new(options)
@@ -187,7 +220,7 @@ local function createClustersDataNodeSource(item,port)
      local success, parsed = parseJson(items.LiveNodes)
      for _, items in pairs(parsed) do
         local clusterHostAndPort = (items.infoAddr):split(":")
-        local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2])
+        local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2],item.name)
         ds_detail:propagate('error', context)
         table.insert(datasources, ds_detail)
      end
@@ -197,9 +230,13 @@ local function createClustersDataNodeSource(item,port)
   end)
   return ds
 end
-local function createClusterYarnDataSource(item,port)
+local function yarnClusterDataSource(item,port)
   local options = createOptions(item,port)
-  options.path = HADOOP_JMX_PATH
+  if  item.name ~='' then
+    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
+  else
+    options.path = HADOOP_JMX_PATH
+  end
   local key = item.host .. '.' .. port
   options.meta = {YARNMAP_KEY, key}
   local ds = WebRequestDataSource:new(options)
@@ -224,7 +261,7 @@ local function createClusterYarnDataSource(item,port)
      for _, items in pairs(parsed) do
         if counter ~=1 then 
         local clusterHostAndPort = (items.NodeHTTPAddress):split(":")
-        local ds_detail = createClusterYarnDataSource(clusterHostAndPort[1], clusterHostAndPort[2])
+        local ds_detail = createClusterYarnDataSource(clusterHostAndPort[1], clusterHostAndPort[2],item.name)
         ds_detail:propagate('error', context)
         table.insert(datasources, ds_detail)
         end
@@ -298,7 +335,7 @@ local function createPollers(params)
                  return nil
           end
      callback(data, extra)
-         return { createClusterYarnDataSource(item,item.rmPort) }
+         return { yarnClusterDataSource(item,item.rmPort) }
       end)
     local poller = DataSourcePoller:new(item.pollInterval, ds)
     pollers:add(poller)
