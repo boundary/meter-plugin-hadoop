@@ -132,9 +132,9 @@
   "HADOOP_MAP_REDUCED_PROCESS_CPU_TIME": {
     "defaultAggregate": "sum",
     "defaultResolutionMS": 1000,
-    "description": "Prcesss cpu time",
-    "displayName": "Prcesss cpu time",
-    "displayNameShort": "Prcesss cpu time",
+    "description": "Prcess cpu time",
+    "displayName": "Prcess cpu time",
+    "displayNameShort": "Prcess cpu time",
     "metric": "HADOOP_MAP_REDUCED_PROCESS_CPU_TIME",
     "type": "HADOOP_CPU",
     "unit": "duration"
