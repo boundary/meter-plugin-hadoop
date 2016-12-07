@@ -105,32 +105,7 @@ local function createYarnAndMapReducedDataSource(item,port)
   options.meta = {YARNMAP_KEY, key}
   return WebRequestDataSource:new(options)
 end
-local function getListOfClusterDetails(options,type)
- local ds = WebRequestDataSource:new(options)
-  ds:chain(function (context, callback, data, extra)
-     if not isHttpSuccess(extra.status_code) then
-      return nil
-    end
-    local success, parsed = parseJson(data)
-    if not success then
-      return nil
-    end
-   
-    callback(data, extra)
-    local datasources = {}
-    local yarnAndMapReducedNode = data[BEANS_CONSTANT]
-  if FEATCH_YARN_LIVE_NODE_RM == item.name then     
-     local liveNodeMgr = item.LiveNodeManagers
-     local success, parsed = parseJson(liveNodeMgr)
-      for _, items in pairs(parsed) do
-        print(items.HostName)
-        table.insert(datasources, items.HostName)
-      end
-    end
-    return datasources
-  end)
-  return ds
-end
+
 local function createOption(host,port)
   local options = {}
   options.host = host
@@ -328,7 +303,6 @@ local function createPollers(params)
     local poller = DataSourcePoller:new(item.pollInterval, ds)
     pollers:add(poller)
       end                                                                  
-      print("Multinode")
     end    
   end
 
