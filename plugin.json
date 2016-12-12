@@ -125,7 +125,7 @@
     {
       "title": "NameNode Port",
       "name": "nnPort",
-      "description": "DataNode hadoop port number",
+      "description": "NameNode hadoop port number",
       "type": "integer",
       "default": 50070,
       "required": true
@@ -133,7 +133,7 @@
     {
       "title": "Polling Interval(ms)",
       "name": "pollInterval",
-      "description": "The polling interval (in milliseconds) to call the hadopp performance metrics collector",
+      "description": "The polling interval (in milliseconds) to call the hadoop performance metrics collector",
       "type": "integer",
       "default": 1000,
       "required": true
