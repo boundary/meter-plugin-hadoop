@@ -22,7 +22,7 @@ local PollerCollection = framework.PollerCollection
 local isHttpSuccess = framework.util.isHttpSuccess
 local ipack = framework.util.ipack
 local parseJson = framework.util.parseJson
-
+local string = require('string')
 --Getting the parameters from params.json.
 local params = framework.params
 
@@ -182,14 +182,14 @@ local function createClusterNameNodeDataSource(item,port)
      for _, items in pairs(parsed) do
         local clusterHostAndPort = (items.infoAddr):split(":")
         local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2],item.name)
-        ds_detail:propagate('error', context)
-        table.insert(datasources, ds_detail)
+        ds_detail:propagate('error', context) 
+	table.insert(datasources, ds_detail)
      end
      end
     end    
     return datasources
   end)
-  return ds
+ return ds
 end
 local function createClustersDataNodeSource(item,port)
   local options = createOptions(item,port)
@@ -222,7 +222,7 @@ local function createClustersDataNodeSource(item,port)
         local clusterHostAndPort = (items.infoAddr):split(":")
         local ds_detail = createClusterDataNodeSource(clusterHostAndPort[1], clusterHostAndPort[2],item.name)
         ds_detail:propagate('error', context)
-        table.insert(datasources, ds_detail)
+         table.insert(datasources, ds_detail)
      end
      end
     end    
@@ -292,22 +292,22 @@ local function createPollers(params)
       pollers:add(yarnAndMapReducedPoller)
       end
     elseif item.type == HADOOP_MULTINODE then
-      if  item.dnPort ~='' then
-         local ds = createDataNodeDataSource(item,item.nnPort)
-          ds:chain(function (context, callback, data, extra)
-             if not isHttpSuccess(extra.status_code) then
-              return nil
-             end
-       local success, parsed = parseJson(data)
-          if not success then
-                 return nil
-          end
-     callback(data, extra)
-         return { createClustersDataNodeSource(item,item.dnPort) }
-      end)
-    local poller = DataSourcePoller:new(item.pollInterval, ds)
-    pollers:add(poller)
-      end
+      --if  item.dnPort ~='' then
+      --   local ds = createDataNodeDataSource(item,item.nnPort)
+      --    ds:chain(function (context, callback, data, extra)
+      --       if not isHttpSuccess(extra.status_code) then
+      --        return nil
+      --       end
+      -- local success, parsed = parseJson(data)
+      --    if not success then
+      --           return nil
+      --    end
+     --callback(data, extra)
+     --    return { createClustersDataNodeSource(item,item.dnPort) }
+     -- end)
+    --local poller = DataSourcePoller:new(item.pollInterval, ds)
+    --pollers:add(poller)
+     -- end
       if  item.nnPort ~='' then
         local ds = createClusterNameNodeSource(item,item.nnPort)
           ds:chain(function (context, callback, data, extra)
@@ -469,6 +469,7 @@ function plugin:onParseValues(data, extra)
     return
   end
   local key, hostName = unpack(extra.info)
+  local hostName = string.gsub(hostName,'%.','-')
   local extractor = extractors_map[key]
   return extractor(parsed, hostName)
 

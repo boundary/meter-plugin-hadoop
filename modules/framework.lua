@@ -1649,6 +1649,7 @@ function WebRequestDataSource:fetch(context, callback, params)
     req:propagate('error', self, function (err)
       --err.context = self
       --err.params = params
+      err = err .. "(" .. options.host  .. ":" ..  options.port .. ")"
       return err
     end)
     req:done()
