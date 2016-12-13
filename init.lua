@@ -22,7 +22,7 @@ local PollerCollection = framework.PollerCollection
 local isHttpSuccess = framework.util.isHttpSuccess
 local ipack = framework.util.ipack
 local parseJson = framework.util.parseJson
-
+local string = require('string')
 --Getting the parameters from params.json.
 local params = framework.params
 
@@ -469,6 +469,7 @@ function plugin:onParseValues(data, extra)
     return
   end
   local key, hostName = unpack(extra.info)
+  local hostName = string.gsub(hostName,'%.','-')
   local extractor = extractors_map[key]
   return extractor(parsed, hostName)
 
