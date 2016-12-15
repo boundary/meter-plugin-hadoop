@@ -33,8 +33,12 @@ none
 
 |Field Name      |Description                                                             |
 |:---------------|:-----------------------------------------------------------------------|
-|Host            |The hadoop hostname                  |
-|PollInterval    |How often (in milliseconds) to poll for metrics. Default value for this is 1000 ms, we recommend not have smaller value                                       |
+|Host            |The hadoop hostname                                                     |
+|Type            |Type of hadoop node to monitor                                          |
+|RM Port         |Resource manager hadoop port number                                     |
+|DataNode Port   |DataNode hadoop port number                                             |
+|NameNode Port   |NameNode hadoop port number                                             |
+|PollInterval    |How often (in milliseconds) to poll for metrics. Default value for this is 1000 ms, we recommend not have smaller value                                                                                     |
 
 ### Metrics Collected
 
