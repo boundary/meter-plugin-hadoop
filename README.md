@@ -16,6 +16,7 @@ This plugin grabs metrics from the Hadoop node where it is started and parses th
 
 - To install Hadoop on centos/RHEL [see instructions](http://tecadmin.net/setup-hadoop-2-4-single-node-cluster-on-linux/)
 - To install Hadoop on ubuntu [see instructions](http://thepowerofdata.io/setting-up-a-apache-hadoop-2-7-single-node-on-ubuntu-14-04/)
+- To install Hadoop on multi node [see instructions](https://www.tutorialspoint.com/hadoop/hadoop_multi_node_cluster.htm)
 
 #### TrueSight Pulse Meter versions v4.5 or later
 
