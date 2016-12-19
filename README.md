@@ -16,6 +16,7 @@ This plugin grabs metrics from the Hadoop node where it is started and parses th
 
 - To install Hadoop on centos/RHEL [see instructions](http://tecadmin.net/setup-hadoop-2-4-single-node-cluster-on-linux/)
 - To install Hadoop on ubuntu [see instructions](http://thepowerofdata.io/setting-up-a-apache-hadoop-2-7-single-node-on-ubuntu-14-04/)
+- To install Hadoop on multi node [see instructions](https://www.tutorialspoint.com/hadoop/hadoop_multi_node_cluster.htm)
 
 #### TrueSight Pulse Meter versions v4.5 or later
 
@@ -33,8 +34,13 @@ none
 
 |Field Name      |Description                                                             |
 |:---------------|:-----------------------------------------------------------------------|
-|Host            |The hadoop hostname                  |
-|PollInterval    |How often (in milliseconds) to poll for metrics. Default value for this is 1000 ms, we recommend not have smaller value                                       |
+|Host            |The hadoop hostname                                                     |
+|Type            |Type of hadoop node to monitor                                          |
+|RM Port         |Resource manager hadoop port number                                     |
+|DataNode Port   |DataNode hadoop port number                                             |
+|NameNode Port   |NameNode hadoop port number                                             |
+|User Name       |User name is used to access authenticated(Kerberos authentication using HTTP SPNEGO protocol) HTTP JMX REST endpoint|
+|PollInterval    |How often (in milliseconds) to poll for metrics. Default value for this is 1000 ms, we recommend not have smaller value                                                                                     |
 
 ### Metrics Collected
 
