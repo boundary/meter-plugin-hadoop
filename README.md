@@ -1,10 +1,8 @@
-# TrueSight Pulse Hadoop Plugin
-
+TrueSight Pulse Hadoop Plugin
+-----------------------------
 This plugin grabs metrics from the Hadoop node where it is started and parses the data to be able to integrate into boundary. 
 
-## Prerequisites
-
-### Supported OS
+### Prerequisites
 
 |     OS    | Linux | Windows | SmartOS | OS X |
 |:----------|:-----:|:-------:|:-------:|:----:|
@@ -23,13 +21,11 @@ This plugin grabs metrics from the Hadoop node where it is started and parses th
 - To install new meter go to Settings->Installation or [see instructons|https://help.boundary.com/hc/en-us/sections/200634331-Installation]. 
 - To upgrade the meter to the latest version - [see instructons|https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter].
 
-
 ### Plugin Setup
 
 none
-
      
-### Plugin Configuration Fields
+#### Plugin Configuration Fields
 
 
 |Field Name      |Description                                                             |
@@ -42,7 +38,7 @@ none
 |User Name       |User name is used to access authenticated(Kerberos authentication using HTTP SPNEGO protocol) HTTP JMX REST endpoint|
 |PollInterval    |How often (in milliseconds) to poll for metrics. Default value for this is 1000 ms, we recommend not have smaller value                                                                                     |
 
-### Metrics Collected
+#### Metrics Collected
 
 
 |Metric Name                                           |Description                                                                |
