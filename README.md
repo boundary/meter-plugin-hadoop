@@ -35,7 +35,6 @@ none
 |RM Port         |Resource manager hadoop port number                                     |
 |DataNode Port   |DataNode hadoop port number                                             |
 |NameNode Port   |NameNode hadoop port number                                             |
-|User Name       |User name is used to access authenticated(Kerberos authentication using HTTP SPNEGO protocol) HTTP JMX REST endpoint|
 |PollInterval    |How often (in milliseconds) to poll for metrics. Default value for this is 1000 ms, we recommend not have smaller value                                                                                     |
 
 #### Metrics Collected

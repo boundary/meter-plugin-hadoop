@@ -140,7 +140,7 @@
     "unit": "duration"
   },
   "HADOOP_MAP_REDUCED_PROCESS_CPU_LOAD": {
-    "defaultAggregate": "sum",
+    "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "Process cpu load",
     "displayName": "Process cpu load",
@@ -150,7 +150,7 @@
     "unit": "percent"
   },
   "HADOOP_MAP_REDUCED_SYSTEM_CPU_LOAD": {
-    "defaultAggregate": "sum",
+    "defaultAggregate": "avg",
     "defaultResolutionMS": 1000,
     "description": "System cpu load",
     "displayName": "System cpu load",

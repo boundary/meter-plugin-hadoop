@@ -52,7 +52,6 @@ local HADOOP_DATANODE='dataNode'
 local HADOOP_YARN_MR="yarnMR"
 local HADOOP_CLUSTER_DETAILS='Hadoop:service=NameNode,name=NameNodeInfo'
 local HADOOP_DATANODE_CLUSTER_DETAILS='Hadoop:service=DataNode,name=DataNodeInfo'
-local HADOOP_USER_NAME_PARAM='?user.name='
 --Split string by comma
 function string:split( inSplitPattern, outResults )
   if not outResults then
@@ -78,22 +77,14 @@ local function createOptions(item,port)
 end
 local function createClusterNameNodeSource(item,port)
   local options = createOptions(item,port)
-  if  item.name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = item.host .. '.' .. port
   options.meta = {NAMENODE_KEY, key}
   return WebRequestDataSource:new(options)
 end
 local function createNameNodeDataSource(item,port)
   local options = createOptions(item,port)
-  if  item.name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = item.host .. '.' .. port
   options.meta = {NAMENODE_KEY, key}
   return WebRequestDataSource:new(options)
@@ -101,11 +92,7 @@ end
 
 local function createDataNodeDataSource(item,port)
   local options = createOptions(item,port)
-  if  item.name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = item.host .. '.' .. port
   options.meta = {DATANODE_KEY, key}
   return WebRequestDataSource:new(options)
@@ -113,11 +100,7 @@ end
 
 local function createYarnAndMapReducedDataSource(item,port)
   local options = createOptions(item,port)
-  if  item.name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = item.host .. '.' .. port
   options.meta = {YARNMAP_KEY, key}
   return WebRequestDataSource:new(options)
@@ -132,33 +115,21 @@ local function createOption(host,port)
 end
 local function createClusterDataNodeSource(host,port,name)
   local options = createOption(host,port)
-  if  name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = host .. '.' .. port
   options.meta = {DATANODE_KEY, key}
   return WebRequestDataSource:new(options)
 end
 local function createClusterYarnDataSource(host,port,name)
   local options = createOption(host,port)
-  if  name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = host .. '.' .. port
   options.meta = {YARNMAP_KEY, key}
   return WebRequestDataSource:new(options)
 end
 local function createClusterNameNodeDataSource(item,port)
   local options = createOptions(item,port)
-  if  item.name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = item.host .. '.' .. port
   options.meta = {NAMENODE_KEY, key}
   local ds = WebRequestDataSource:new(options)
@@ -193,11 +164,7 @@ local function createClusterNameNodeDataSource(item,port)
 end
 local function createClustersDataNodeSource(item,port)
   local options = createOptions(item,port)
-  if  item.name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = item.host .. '.' .. port
   options.meta = {DATANODE_KEY, key}
   local ds = WebRequestDataSource:new(options)
@@ -232,11 +199,7 @@ local function createClustersDataNodeSource(item,port)
 end
 local function yarnClusterDataSource(item,port)
   local options = createOptions(item,port)
-  if  item.name ~='' then
-    options.path = HADOOP_JMX_PATH .. (HADOOP_USER_NAME_PARAM) .. (item.name)
-  else
-    options.path = HADOOP_JMX_PATH
-  end
+  options.path = HADOOP_JMX_PATH
   local key = item.host .. '.' .. port
   options.meta = {YARNMAP_KEY, key}
   local ds = WebRequestDataSource:new(options)
