@@ -216,7 +216,7 @@ end
 local function yarnClusterDataSource(item,port)
   local options = createOptions(item,port)
   options.path = HADOOP_JMX_PATH
-  local key = item.host .. '.' .. port
+  local key = item.host
   options.meta = {YARNMAP_KEY, key}
   local ds = WebRequestDataSource:new(options)
   ds:chain(function (context, callback, data, extra)
