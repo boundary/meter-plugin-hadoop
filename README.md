@@ -35,7 +35,7 @@ none
 |RM Port         |Resource manager hadoop port number                                     |
 |DataNode Port   |DataNode hadoop port number                                             |
 |NameNode Port   |NameNode hadoop port number                                             |
-|PollInterval    |How often (in milliseconds) to poll for metrics. Default value for this is 1000 ms, we recommend not have smaller value                                                                                     |
+|PollInterval    |The frequency (in milliseconds) used to poll for metrics. Default value is 1000 ms, we do not recommend a value smaller than the default value value                                                      |
 
 #### Metrics Collected
 
