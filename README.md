@@ -10,13 +10,13 @@ This plugin grabs metrics from the Hadoop node where it is started and parses th
 
 - Hadoop version 2.7.0+
 
-### For Centos/RHEL/Ubuntu
+#### For Centos/RHEL/Ubuntu
 
 - To install Hadoop on centos/RHEL [see instructions](http://tecadmin.net/setup-hadoop-2-4-single-node-cluster-on-linux/)
 - To install Hadoop on ubuntu [see instructions](http://thepowerofdata.io/setting-up-a-apache-hadoop-2-7-single-node-on-ubuntu-14-04/)
 - To install Hadoop on multi node [see instructions](https://www.tutorialspoint.com/hadoop/hadoop_multi_node_cluster.htm)
 
-### TrueSight Pulse Meter versions v4.5 or later
+#### TrueSight Pulse Meter versions v4.5 or later
 
 - To install new meter go to Settings->Installation or [see instructons|https://help.boundary.com/hc/en-us/sections/200634331-Installation]. 
 - To upgrade the meter to the latest version - [see instructons|https://help.boundary.com/hc/en-us/articles/201573102-Upgrading-the-Boundary-Meter].
@@ -86,4 +86,3 @@ none
 |HADOOP_DATANODE_VOLUME_FAILURES                       |Number of failed  volumes                                                  |
 |HADOOP_DATANODE_NUMBER_OF_FAILED_STORAGE_VOLUMES      |Number of failed storage volumes                                           |
 |HADOOP_DATANODE_REMAINING_CAPACITY                    |Remaining disk space                                                       |
-
