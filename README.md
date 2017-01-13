@@ -1,6 +1,6 @@
 TrueSight Pulse Hadoop Plugin
 -----------------------------
-This plugin grabs metrics from the Hadoop node where it is started and parses the data to be able to integrate into boundary. 
+This plugin grabs metrics from the Hadoop node where it is started and parses the data to be able to integrate into Pulse. 
 
 ### Prerequisites
 
@@ -35,7 +35,7 @@ none
 |RM Port         |Resource manager hadoop port number                                     |
 |DataNode Port   |DataNode hadoop port number                                             |
 |NameNode Port   |NameNode hadoop port number                                             |
-|PollInterval    |The frequency (in milliseconds) used to poll for metrics. Default value is 1000 ms, we do not recommend a value smaller than the default value value                                                      |
+|PollInterval    |The frequency (in milliseconds) used to poll for metrics. Default value is 1000 ms, we do not recommend a value smaller than the default value                                                            |
 
 #### Metrics Collected
 
